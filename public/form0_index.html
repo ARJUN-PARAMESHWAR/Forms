@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../React-task/form0_index.css" rel="stylesheet">
+    <script src="../React-task/form.js"> </script>
+    <title>Form Page</title>
+</head>
+
+<body>
+    <div class="fullContainer">
+        <div class="form">
+            <div class="formPart1">
+                <div>Name</div>
+                <div>Date of birth</div>
+                <div>Gender</div>
+                <div>Role</div>
+                <div>Employee id</div>
+                <div>Mobile number</div>
+                <div>Nationality</div>
+                <div>Address</div>
+
+            </div>
+
+            <div class="formPart2">
+                <div>
+                    <input type="text" placeholder="First Name" class="inputBar name">
+                    <input type="text" placeholder="Last Name" class="inputBar name">
+                </div>
+
+                <div>
+                    <input type="date" placeholder="dd/mm/yyyy" class="inputBar">
+                </div>
+
+                <div id="radioButton">
+                    <input type="radio" id="male" name="gender">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender">
+                    <label for="female">Female</label>
+                    <input type="radio" id="others" name="gender">
+                    <label for="others">Others</label>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="e-g: Developer" class="inputBar">
+                </div>
+
+                <div>
+                    <input type="text" placeholder="e-g: 1ps001" class="inputBar">
+                </div>
+
+                <div>
+                    <input type="text" placeholder="(+91)" class="inputBar">
+                </div>
+
+                <div>
+                    <select>
+                        <option value="" disabled selected>Choose your country</option>
+                        <option>India</option>
+                        <option>U.S.</option>
+                        <option>U.K</option>
+                        <option>Singapore</option>
+                        <option>Malaysia</option>
+
+                    </select>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Line1" class="inputBar addressLine" style="margin-top:5px">
+                    <input type="text" placeholder="Line2" class="inputBar addressLine">
+                    <input type="text" placeholder="Line3" class="inputBar addressLine">
+                </div>
+
+                <div>
+                    <input type="checkbox">
+                    <Span>I read all the</Span>
+                    <span><a href="#">terms and conditions</a> and I acknowledge that I have understood
+                        them completely.</span>
+                </div>
+
+            </div>
+
+            <button class="submitButton" onclick="submit()">Submit</button>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
