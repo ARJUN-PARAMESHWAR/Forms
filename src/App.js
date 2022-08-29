@@ -1,27 +1,14 @@
-import {Routes,Route, BrowserRouter} from "react-router-dom";
-import LoginPage from "./loginPage";
-import EmployeeForm from "./employeeForm";
-import ErrorPage from "./errorPage";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Loginpage from "./LoginPage";
+import Formdetails from "./employeeform";
 
-
-function App() {
-
+export default function App() {
   return (
     <BrowserRouter>
-        <Routes>
-
-            <Route path="" element = {<LoginPage />} />
-            <Route path="/employeeForm" element = {<EmployeeForm/>} /> 
-            <Route path="*" element ={<ErrorPage/>} />
-
-        </Routes>
-
+      <Routes>
+        <Route path="/" element={<Loginpage />}></Route>
+        <Route path="/employeeform" element={<Formdetails />}></Route>
+      </Routes>
     </BrowserRouter>
   );
 }
-
-
-
-
-
-export default App;

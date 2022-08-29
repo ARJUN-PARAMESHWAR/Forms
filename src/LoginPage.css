@@ -1,0 +1,80 @@
+*{
+ padding:0;
+ margin:0;
+}
+#root{
+  width:100vw;
+  float:left;
+  background-color: white;
+}
+
+.basecontainer{
+  width:100%;
+  float: left;
+  height:100vh;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width:30%;
+  float:left;
+  border: 2px solid #000;
+  border-radius: 2%;
+}
+
+.header{
+  font-size:medium;
+  color:#000;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: antiquewhite;
+  text-align: center;
+}
+.input1>span{
+  width:20%;
+  margin:1% 10%;
+  float: left;
+}
+
+.input1>input{
+  width:50%;
+  float: left;
+  height:30px;
+  box-sizing:border-box;
+  padding:5px;
+}
+
+.input2>input{
+  width:50%;
+  float: left;
+  height:30px;
+  box-sizing:border-box;
+  padding:5px;
+}
+
+.input2>span{
+  width:20%;
+  margin:1% 10%;
+  float: left;
+}
+
+.loginButton{
+  width:100%;
+  float:left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginButton>span{
+  cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 5%;
+  padding:5px;
+}
+
+.container>div{
+  width:100%;
+  float:left;
+  padding:10px 0;
+}
