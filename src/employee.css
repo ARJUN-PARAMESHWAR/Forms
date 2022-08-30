@@ -23,7 +23,7 @@ form {
 .layout {
   float: left;
   width: 50%;
-  margin: 5% 25%;
+  margin: 1%;
   border: 2px solid #000;
   border-bottom-left-radius: 2%;
   border-bottom-right-radius: 2%;
@@ -59,4 +59,10 @@ form {
 
 .submitbutton:hover {
   background-color: rgb(180, 100, 100);
+}
+
+.list {
+  width: 45%;
+  margin: 1% 0;
+  float: left;
 }
