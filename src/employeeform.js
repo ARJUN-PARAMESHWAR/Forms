@@ -1,7 +1,6 @@
 import "./employee.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 export default function Formdetails() {
-  console.log("main func");
   const [inputs, setInputs] = useState([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -13,15 +12,11 @@ export default function Formdetails() {
   const [line2, setline2] = useState("");
   const [line3, setline3] = useState("");
   const [nationality, setNationality] = useState("");
-  const [count, setCount] = useState("");
-
   function InputChange(e, func) {
     func(e.target.value);
-    // setInputs((prevValue) => ({ ...prevValue, [name]: value }));
   }
 
   function Formsubmit() {
-    setCount(1);
     setInputs([
       ...inputs,
       {
@@ -37,12 +32,58 @@ export default function Formdetails() {
         nationality,
       },
     ]);
-    console.log(inputs);
+    Resetvalues();
+  }
+  function Resetvalues() {
+    setFirstName("");
+    setlastName("");
+    setDOB("");
+    setRole("");
+    setMobilenumber("");
+    setNationality("");
+    setline1("");
+    setline2("");
+    setline3("");
   }
 
-  useEffect(() => {
-    console.log(inputs);
-  }, [count]);
+  function Deleterow(i) {
+    let temp = inputs.filter((item, j) => {
+      return i !== j;
+    });
+    setInputs(temp);
+  }
+
+  function Populate(i) {
+    setFirstName(inputs[i].firstName);
+    setlastName(inputs[i].lastName);
+    setDOB(inputs[i].DOB);
+    setRole(inputs[i].role);
+    setMobilenumber(inputs[i].mobilenumber);
+    setNationality(inputs[i].nationality);
+    setline1(inputs[i].line1);
+    setline2(inputs[i].line2);
+    setline3(inputs[i].line3);
+  }
+  // var accord_flag = true;
+
+  function Expandcontent(e) {
+    var location = e.target.id;
+    location = parseInt(location);
+    location += 1;
+    console.log(location);
+    var temp1 = document.getElementById(`content${location}`);
+    console.log(temp1.value);
+    // if (accord_flag === true) {
+    //   temp1.classList.add("accordion_content_show");
+    //   console.log(temp1.classList, accord_flag);
+    //   accord_flag = false;
+    //   console.log(accord_flag);
+    // } else if (accord_flag === false) {
+    //   temp1.classList.remove("accordion_content_show");
+    //   console.log(temp1.classList, accord_flag);
+    //   accord_flag = true;
+    // }
+  }
 
   return (
     <>
@@ -88,7 +129,7 @@ export default function Formdetails() {
                 name="gender"
                 className="radioelements"
                 onChange={(e) => InputChange(e, setGender)}
-                value={Gender}
+                value={"Male"}
               ></input>
               <label>Male</label>
 
@@ -97,7 +138,7 @@ export default function Formdetails() {
                 name="gender"
                 className="radioelements"
                 onChange={(e) => InputChange(e, setGender)}
-                value={Gender}
+                value={"Female"}
               ></input>
               <label>Female</label>
 
@@ -106,7 +147,7 @@ export default function Formdetails() {
                 name="gender"
                 className="radioelements"
                 onChange={(e) => InputChange(e, setGender)}
-                value={Gender}
+                value={"Others"}
               ></input>
               <label>Others</label>
             </div>
@@ -126,7 +167,7 @@ export default function Formdetails() {
           <div className="elements">
             <div className="label">Mobile Number</div>
             <input
-              type={"number"}
+              type={"text"}
               placeholder="enter 10 digit number"
               className="inputs"
               name="mobilenumber"
@@ -177,19 +218,53 @@ export default function Formdetails() {
             <button className="submitbutton" onClick={Formsubmit} name="submit">
               Submit
             </button>
+            <button className="submitbutton" onClick={Resetvalues}>
+              Clear
+            </button>
           </div>
         </div>
         <div className="list">
+          <div className="headers">
+            <h3>Employee Details</h3>
+          </div>
           <ul>
-            <li>
-              <a href="#content">
-                <label>
-                  Employee Details
-                  <span className="fa-solid fa-caret-down"></span>
-                </label>
-              </a>
-              <div className="content"> {JSON.stringify(inputs)}</div>
-            </li>
+            {inputs.length > 0 &&
+              inputs.map((item, i) => (
+                <li>
+                  <div
+                    className="accordion_head"
+                    id={i}
+                    onClick={Expandcontent}
+                  >
+                    {`Employee number ${i + 1}`}
+                    <span class="fa-solid fa-plus"></span>
+                  </div>
+
+                  <div
+                    className="accordion_content"
+                    id={`content${i + 1}`}
+                    value="1"
+                  >
+                    <br></br>
+                    {`Name: ${item.firstName} ${item.lastName}`}
+                    <br></br>
+                    {`DOB: ${item.DOB}`}
+                    <br></br>
+                    {`Role: ${item.role}`}
+                    <br></br>
+                    {`Gender: ${item.Gender}`}
+                    <br></br>
+                    {`Mobile Number: ${item.mobilenumber}`}
+                    <br></br>
+                    {`Address: ${item.line1} ${item.line2} ${item.line3}`}
+                    <br></br>
+                    {`Nationality: ${item.nationality}`}
+                    <br></br>
+                    <button onClick={() => Populate(i)}>Populate</button>
+                    <button onClick={() => Deleterow(i)}>Delete</button>
+                  </div>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
