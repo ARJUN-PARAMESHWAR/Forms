@@ -80,6 +80,15 @@ form {
   text-align: center;
   padding: 6px;
 }
+
+.fa-plus {
+  float: right;
+}
+
+.rotatedplus {
+  transform: rotate(45deg);
+}
+
 ul {
   list-style: none;
 }
@@ -99,4 +108,44 @@ ul {
 
 .accordion_content_show {
   display: block;
+}
+
+.editbutton {
+  padding: 7px;
+  color: #000;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.editbutton:hover {
+  background-color: #4088c6;
+  color: #fff;
+}
+
+.savebutton {
+  padding: 5px;
+  color: #000;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.savebutton:hover {
+  background-color: rgb(83, 204, 79);
+  color: #fff;
+}
+
+.deletebutton {
+  padding: 5px;
+  color: #000;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.deletebutton:hover {
+  background-color: rgb(204, 31, 31);
+  color: #fff;
+}
+
+.spacing {
+  margin-left: 10px;
 }

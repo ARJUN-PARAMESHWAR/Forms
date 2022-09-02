@@ -69,8 +69,7 @@ export default function Formdetails() {
   function Expandcontent(e) {
     var location = e.target.id;
     location = parseInt(location);
-    location += 1;
-    console.log(location);
+    console.log(typeof location);
     var temp1 = document.getElementById(`content${location}`);
     console.log(temp1);
     if (accord_flag === true) {
@@ -233,18 +232,14 @@ export default function Formdetails() {
                 <li>
                   <div
                     className="accordion_head"
-                    id={i}
+                    id={i + 1}
                     onClick={Expandcontent}
                   >
                     {`Employee number ${i + 1}`}
-                    <span class="fa-solid fa-plus"></span>
+                    <span class="fa-solid fa-plus" id={`plus${i + 1}`}></span>
                   </div>
 
-                  <div
-                    className="accordion_content"
-                    id={`content${i + 1}`}
-                    value={true}
-                  >
+                  <div className="accordion_content" id={`content${i + 1}`}>
                     <br></br>
                     {`Name: ${item.firstName} ${item.lastName}`}
                     <br></br>

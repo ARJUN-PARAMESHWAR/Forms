@@ -12,11 +12,14 @@ export default function Formdetails() {
   const [line2, setline2] = useState("");
   const [line3, setline3] = useState("");
   const [nationality, setNationality] = useState("");
+  const [employeecount, setEmployeecount] = useState(1);
   function InputChange(e, func) {
     func(e.target.value);
   }
 
   function Formsubmit() {
+    setEmployeecount(employeecount + 1);
+
     setInputs([
       ...inputs,
       {
@@ -64,25 +67,75 @@ export default function Formdetails() {
     setline2(inputs[i].line2);
     setline3(inputs[i].line3);
   }
-  // var accord_flag = true;
 
+  function Savevalues(i) {
+    setFirstName(firstName);
+    setlastName(lastName);
+    setDOB(DOB);
+    setRole(role);
+    setMobilenumber(mobilenumber);
+    setNationality(nationality);
+    setline1(line1);
+    setline2(line2);
+    setline3(line3);
+    inputs[i].firstName = firstName;
+    inputs[i].lastName = lastName;
+    inputs[i].DOB = DOB;
+    inputs[i].role = role;
+    inputs[i].Gender = Gender;
+    inputs[i].mobilenumber = mobilenumber;
+    inputs[i].line1 = line1;
+    inputs[i].line2 = line2;
+    inputs[i].line3 = line3;
+    inputs[i].nationality = nationality;
+    Resetvalues();
+  }
   function Expandcontent(e) {
-    var location = e.target.id;
+    let location = e.target.id;
     location = parseInt(location);
-    location += 1;
-    console.log(location);
-    var temp1 = document.getElementById(`content${location}`);
-    console.log(temp1.value);
-    // if (accord_flag === true) {
-    //   temp1.classList.add("accordion_content_show");
-    //   console.log(temp1.classList, accord_flag);
-    //   accord_flag = false;
-    //   console.log(accord_flag);
-    // } else if (accord_flag === false) {
-    //   temp1.classList.remove("accordion_content_show");
-    //   console.log(temp1.classList, accord_flag);
-    //   accord_flag = true;
-    // }
+
+    //  element
+    let plus_icon = document.getElementById(`plus ${location}`);
+    let content_div = document.getElementById(`content${location}`);
+    // Class availability
+    let class_available_div = content_div.classList.contains(
+      "accordion_content_show"
+    );
+    let class_available_plus = plus_icon.classList.contains("rotatedplus");
+
+    //condition
+    if (class_available_div && class_available_plus) {
+      content_div.classList.remove("accordion_content_show");
+      plus_icon.classList.remove("rotatedplus");
+    } else {
+      content_div.classList.add("accordion_content_show");
+      plus_icon.classList.add("rotatedplus");
+    }
+  }
+
+  function Plusrotate(e) {
+    let pluslocation = e.target.id;
+    var splitting = pluslocation.split(" ");
+    splitting = parseInt(splitting[1]);
+
+    //  element
+    let plus_icon1 = document.getElementById(`${pluslocation}`);
+    let content_div1 = document.getElementById(`content${splitting}`);
+
+    // Class availability
+    let class_available_plus1 = plus_icon1.classList.contains("rotatedplus");
+    let class_available_div1 = content_div1.classList.contains(
+      "accordion_content_show"
+    );
+
+    //condition
+    if (class_available_plus1 && class_available_div1) {
+      plus_icon1.classList.remove("rotatedplus");
+      content_div1.classList.remove("accordion_content_show");
+    } else {
+      plus_icon1.classList.add("rotatedplus");
+      content_div1.classList.add("accordion_content_show");
+    }
   }
 
   return (
@@ -93,7 +146,11 @@ export default function Formdetails() {
 
           <div className="elements">
             <div className="label">Name</div>
-
+            <input
+              id="hiddenInput"
+              type={"hidden"}
+              value={employeecount}
+            ></input>
             <input
               type={"text"}
               placeholder="First name"
@@ -221,6 +278,7 @@ export default function Formdetails() {
             <button className="submitbutton" onClick={Resetvalues}>
               Clear
             </button>
+            {/* <button onClick={Savevalues}>Save</button> */}
           </div>
         </div>
         <div className="list">
@@ -233,18 +291,18 @@ export default function Formdetails() {
                 <li>
                   <div
                     className="accordion_head"
-                    id={i}
+                    id={i + 1}
                     onClick={Expandcontent}
                   >
                     {`Employee number ${i + 1}`}
-                    <span class="fa-solid fa-plus"></span>
+                    <span
+                      className={`fa-solid fa-plus`}
+                      id={`plus ${i + 1}`}
+                      onClick={Plusrotate}
+                    ></span>
                   </div>
 
-                  <div
-                    className="accordion_content"
-                    id={`content${i + 1}`}
-                    value="1"
-                  >
+                  <div className="accordion_content" id={`content${i + 1}`}>
                     <br></br>
                     {`Name: ${item.firstName} ${item.lastName}`}
                     <br></br>
@@ -260,8 +318,24 @@ export default function Formdetails() {
                     <br></br>
                     {`Nationality: ${item.nationality}`}
                     <br></br>
-                    <button onClick={() => Populate(i)}>Populate</button>
-                    <button onClick={() => Deleterow(i)}>Delete</button>
+                    <button className="editbutton" onClick={() => Populate(i)}>
+                      Edit
+                      <i class="fa-duotone fa-pencil spacing"></i>
+                    </button>
+                    <button
+                      className="savebutton"
+                      onClick={() => Savevalues(i)}
+                    >
+                      Save
+                      <i class="fa-regular fa-cloud spacing"></i>
+                    </button>
+                    <button
+                      className="deletebutton"
+                      onClick={() => Deleterow(i)}
+                    >
+                      Delete
+                      <i class="fa-duotone fa-trash spacing"></i>
+                    </button>
                   </div>
                 </li>
               ))}
